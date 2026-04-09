@@ -148,7 +148,7 @@ body {
 }
 
 .category-card {
-  min-height: 92px;
+  min-height: 110px;
   border-radius: 16px;
   background: #5d9fe0;
   color: #111;
@@ -157,9 +157,11 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 10px;
-  font-size: 1.08rem;
-  font-weight: 500;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  word-break: keep-all;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
   transition:
     transform 0.18s ease,
