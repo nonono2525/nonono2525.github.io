@@ -2,6 +2,11 @@ html {
   scroll-behavior: smooth;
 }
 
+.archive,
+.layout--single .page {
+  padding-top: 90px;
+}
+
 body {
   background: linear-gradient(180deg, #1f1f1f 0%, #242424 100%);
   color: #f4f4f4;
