@@ -4,25 +4,10 @@ title: Home
 permalink: /
 ---
 
+<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 <script defer src="{{ '/assets/js/cursor-glow.js' | relative_url }}"></script>
 
 <div class="home-page">
-  <nav class="top-nav">
-    <div class="nav-left">
-      <a href="{{ '/' | relative_url }}" class="nav-link active">Home</a>
-    </div>
-
-    <div class="nav-right">
-      <a href="#category" class="nav-link">Category</a>
-      <a href="{{ '/posts/' | relative_url }}" class="nav-link">Posts</a>
-      <a href="{{ '/about/' | relative_url }}" class="nav-link">about</a>
-      <a href="{{ '/search/' | relative_url }}" class="nav-link" aria-label="Search">🔍</a>
-    </div>
-  </nav>
-
-  <div class="top-progress">
-    <div class="top-progress-fill"></div>
-  </div>
 
   <section class="hero-section">
     <div class="hero-left">
@@ -43,14 +28,16 @@ permalink: /
     <h2 class="section-title">Category</h2>
 
     <div class="category-grid">
-      <a href="{{ '/development/' | relative_url }}" class="category-card">개발</a>
-      <a href="{{ '/ctf/' | relative_url }}" class="category-card">CTF/Wargame</a>
-      <a href="{{ '/bugbounty/' | relative_url }}" class="category-card">Bug Bounty</a>
-      <a href="{{ '/docs/' | relative_url }}" class="category-card">블로그/기술문서</a>
-      <a href="{{ '/papers/' | relative_url }}" class="category-card">논문/컨퍼런스</a>
-      <a href="{{ '/achievements/' | relative_url }}" class="category-card">공모전/자격증</a>
+  <a href="{{ '/development/' | relative_url }}" class="category-card">개발</a>
+  <a href="{{ '/ctf/' | relative_url }}" class="category-card">CTF/Wargame</a>
+  <a href="{{ '/bugbounty/' | relative_url }}" class="category-card">Bug Bounty</a>
+  <a href="{{ '/docs/' | relative_url }}" class="category-card">블로그/기술문서</a>
+  <a href="{{ '/papers/' | relative_url }}" class="category-card">논문/컨퍼런스</a>
+  <a href="{{ '/achievements/' | relative_url }}" class="category-card">공모전/자격증</a>
     </div>
   </section>
 
   <hr class="section-line bottom-line">
 </div>
+
+
