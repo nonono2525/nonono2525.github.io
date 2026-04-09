@@ -1,7 +1,52 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: home
-author_profile: true
+layout: default
+title: Home
+permalink: /
 ---
+
+<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+<script defer src="{{ '/assets/js/cursor-glow.js' | relative_url }}"></script>
+
+<div class="home-page">
+  <header class="top-nav">
+    <a href="{{ '/' | relative_url }}" class="nav-link active">Home</a>
+    <nav class="nav-right">
+      <a href="#category" class="nav-link">Category</a>
+      <a href="{{ '/about/' | relative_url }}" class="nav-link">etc</a>
+    </nav>
+  </header>
+
+  <div class="top-progress">
+    <div class="top-progress-fill"></div>
+  </div>
+
+  <section class="hero-section">
+    <div class="hero-left">
+      <h1 class="hero-title">환영 멘트</h1>
+      <p class="hero-contact">Contact : ~~</p>
+    </div>
+
+    <div class="hero-right">
+      <div class="profile-circle">
+        프로필 사진
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-line">
+
+  <section id="category" class="category-section">
+    <h2 class="section-title">Category</h2>
+
+    <div class="category-grid">
+      <a href="{{ '/categories/#개발' | relative_url }}" class="category-card">개발</a>
+      <a href="{{ '/categories/#CTF-Wargame' | relative_url }}" class="category-card">CTF/Wargame</a>
+      <a href="{{ '/categories/#개발2' | relative_url }}" class="category-card">개발</a>
+      <a href="#" class="category-card empty-card"></a>
+      <a href="#" class="category-card empty-card"></a>
+      <a href="#" class="category-card empty-card"></a>
+    </div>
+  </section>
+
+  <hr class="section-line bottom-line">
+</div>
