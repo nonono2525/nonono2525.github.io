@@ -390,3 +390,71 @@ hr,
 .nav-link:hover::after {
   background: #67aef2;
 }
+
+.masthead {
+  display: none !important;
+}
+
+html,
+body {
+  background: linear-gradient(180deg, #1f1f1f 0%, #242424 100%) !important;
+  color: #f4f4f4 !important;
+}
+
+#main,
+.initial-content,
+.page,
+.page__content,
+.archive,
+.archive__item,
+.layout--single,
+.layout--home,
+.taxonomy__index,
+.taxonomy__section,
+.sidebar,
+.author__content,
+.page__inner-wrap,
+.archive__subtitle {
+  background: transparent !important;
+  color: #f4f4f4 !important;
+}
+
+.page__title,
+.archive__item-title,
+.archive__item-title a,
+.page__meta,
+.page__content,
+.page__content p,
+.page__content li,
+.page__content ul,
+.page__content ol,
+.page__content h1,
+.page__content h2,
+.page__content h3,
+.page__content h4,
+.taxonomy__title,
+.archive__subtitle,
+.archive__item-excerpt {
+  color: #f4f4f4 !important;
+}
+
+a {
+  color: #8ec5ff !important;
+}
+
+a:hover {
+  color: #b7dbff !important;
+}
+
+.site-footer,
+.page__footer,
+.page__footer-follow,
+.page__footer-copyright {
+  background: transparent !important;
+  color: #d8d8d8 !important;
+}
+
+.site-footer a,
+.page__footer a {
+  color: #d8d8d8 !important;
+}
