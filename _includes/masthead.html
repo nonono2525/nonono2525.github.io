@@ -1,0 +1,20 @@
+<div class="custom-masthead">
+  <div class="home-page">
+    <nav class="top-nav">
+      <div class="nav-left">
+        <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">Home</a>
+      </div>
+
+      <div class="nav-right">
+        <a href="{{ '/categories/' | relative_url }}" class="nav-link {% if page.url contains '/categories' %}active{% endif %}">Category</a>
+        <a href="{{ '/posts/' | relative_url }}" class="nav-link {% if page.url contains '/posts' %}active{% endif %}">Posts</a>
+        <a href="{{ '/about/' | relative_url }}" class="nav-link {% if page.url contains '/about' %}active{% endif %}">about</a>
+        <a href="{{ '/search/' | relative_url }}" class="nav-link search-link" aria-label="Search">🔍</a>
+      </div>
+    </nav>
+
+    <div class="top-progress">
+      <div class="top-progress-fill"></div>
+    </div>
+  </div>
+</div>
