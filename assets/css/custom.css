@@ -372,3 +372,16 @@ hr,
   align-items: center;
   gap: 24px;
 }
+
+.nav-link {
+  color: #f3f3f3;
+}
+
+.nav-link.active {
+  color: #f3f3f3;
+}
+
+.nav-link.active::after,
+.nav-link:hover::after {
+  background: #67aef2;
+}
