@@ -8,6 +8,19 @@ permalink: /
 <script defer src="{{ '/assets/js/cursor-glow.js' | relative_url }}"></script>
 
 <div class="home-page">
+  <header class="top-nav">
+    <a href="{{ '/' | relative_url }}" class="nav-link active">Home</a>
+    <nav class="nav-right">
+      <a href="#category" class="nav-link">Category</a>
+      <a href="/posts/">Posts</a>
+      <a href="{{ '/about/' | relative_url }}" class="nav-link">about</a>
+      <a href="/search/" class="search-link">🔍</a>
+    </nav>
+  </header>
+
+  <div class="top-progress">
+    <div class="top-progress-fill"></div>
+  </div>
 
   <section class="hero-section">
     <div class="hero-left">
