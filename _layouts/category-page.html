@@ -1,12 +1,30 @@
 ---
-layout: default
 ---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Category</title>
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+</head>
+<body>
 
+<div id="scroll-progress-bar"></div>
 <div id="cursor-glow"></div>
 
-<section class="category-section" style="padding-top: 60px;">
+<nav class="top-nav">
+  <a href="{{ '/' | relative_url }}">Home</a>
+  <div>
+    <a href="{{ '/#category' | relative_url }}">Category</a>
+    <a href="{{ '/#posts' | relative_url }}">Post</a>
+    <a href="{{ '/about/' | relative_url }}">about</a>
+  </div>
+</nav>
+
+<section class="category-section standalone-category">
   <h1>Category <span class="ko">카테고리</span></h1>
-  <div class="category-grid" style="margin-top: 40px;">
+  <div class="category-grid">
     <a href="/category/dev/" class="category-block">개발</a>
     <a href="/category/ctf/" class="category-block">CTF/Wargame</a>
     <a href="/category/bugbounty/" class="category-block">Bug Bounty</a>
@@ -16,19 +34,6 @@ layout: default
   </div>
 </section>
 
-<script>
-document.querySelectorAll('.category-block').forEach(block => {
-  block.addEventListener('mouseenter', () => {
-    block.style.transform = 'scale(1.08)';
-    block.style.transition = 'transform 0.15s cubic-bezier(.36,2,.6,1)';
-  });
-  block.addEventListener('mouseleave', () => {
-    block.style.transform = 'scale(1)';
-  });
-});
-const glow = document.getElementById('cursor-glow');
-document.addEventListener('mousemove', e => {
-  glow.style.left = e.clientX + 'px';
-  glow.style.top  = e.clientY + 'px';
-});
-</script>
+<script src="{{ '/assets/js/site-effects.js' | relative_url }}"></script>
+</body>
+</html>
