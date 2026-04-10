@@ -1,0 +1,34 @@
+---
+layout: default
+---
+
+<div id="cursor-glow"></div>
+
+<section class="about-section">
+  <h1>About</h1>
+  <div class="about-profile">
+    <img src="/assets/images/profile.jpg" alt="프로필 사진" class="profile-circle-about">
+  </div>
+  <div class="about-info">
+    <h2 class="about-name">nnn</h2>
+    <p class="about-school">이화여자대학교 컴퓨터공학과</p>
+    <ul class="about-links">
+      <li>
+        <img src="/assets/images/icon-email.png" alt="email" class="about-icon">
+        <a href="mailto:nonono2566@naver.com">nonono2566@naver.com</a>
+      </li>
+      <li>
+        <img src="/assets/images/icon-instagram.png" alt="instagram" class="about-icon">
+        <a href="https://instagram.com/no.no_n0" target="_blank">no.no_n0</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<script>
+const glow = document.getElementById('cursor-glow');
+document.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top  = e.clientY + 'px';
+});
+</script>
