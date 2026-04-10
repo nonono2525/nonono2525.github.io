@@ -24,3 +24,9 @@ navigation:
 
 head_scripts:
   - /assets/css/custom.css
+  
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-include-cache
