@@ -20,3 +20,6 @@ navigation:
     url: /#posts
   - title: "about"
     url: /about/
+
+head_scripts:
+  - /assets/css/custom.css
