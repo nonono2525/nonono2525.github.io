@@ -10,20 +10,6 @@ logo: "/assets/images/profile.jpg"
 
 # 다크 테마
 minimal_mistakes_skin: "dark"
-
-# 상단 네비게이션
-navigation:
-  - title: "Home"
-    url: /
-  - title: "Category"
-    url: /#category
-  - title: "Post"
-    url: /#posts
-  - title: "about"
-    url: /about/
-
-head_scripts:
-  - /assets/css/custom.css
   
 plugins:
   - jekyll-remote-theme
