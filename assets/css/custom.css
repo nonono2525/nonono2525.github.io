@@ -1,7 +1,7 @@
 /* ── 스크롤 진행바 ───────────────────────────── */
 #scroll-progress-bar {
   position: fixed;
-  top: 0;
+  top: 56px;
   left: 0;
   height: 3px;
   width: 0%;
@@ -14,13 +14,13 @@
 #cursor-glow {
   pointer-events: none;
   position: fixed;
-  width: 300px;
-  height: 300px;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
   transform: translate(-50%, -50%);
   z-index: 9998;
-  transition: left 0.08s, top 0.08s;
+  transition: width 0.2s, height 0.2s;
 }
 
 /* ── 네비게이션 반투명 ───────────────────────── */
