@@ -1,0 +1,61 @@
+---
+---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.category_name }} | {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+</head>
+<body>
+  <div id="scroll-progress-bar"></div>
+  <div id="cursor-glow"></div>
+
+  <nav class="top-nav">
+    <a href="{{ '/' | relative_url }}">Home</a>
+    <div>
+      <a href="{{ '/#category' | relative_url }}">Category</a>
+      <a href="{{ '/#posts' | relative_url }}">Post</a>
+      <a href="{{ '/about/' | relative_url }}">about</a>
+    </div>
+  </nav>
+
+  <section class="category-detail-section">
+    <h1 class="category-detail-title">{{ page.category_name }}</h1>
+    <hr class="section-divider">
+
+    <div class="category-post-list">
+      {% assign filtered_posts = site.posts | where: "category_key", page.category_key %}
+
+      {% if filtered_posts.size > 0 %}
+        {% for post in filtered_posts %}
+          <a class="category-post-card" href="{{ post.url | relative_url }}">
+            <h2>{{ post.title }}</h2>
+            {% if post.excerpt %}
+              <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
+            {% endif %}
+          </a>
+        {% endfor %}
+      {% else %}
+        <div class="category-post-card">
+          <h2>첫 번째 예시글</h2>
+          <p>예시글 내용 여기에 적음</p>
+        </div>
+
+        <div class="category-post-card">
+          <h2>두 번째 예시글</h2>
+          <p></p>
+        </div>
+
+        <div class="category-post-card">
+          <h2>세 번째 예시글</h2>
+          <p></p>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <script src="{{ '/assets/js/site-effects.js' | relative_url }}"></script>
+</body>
+</html>
