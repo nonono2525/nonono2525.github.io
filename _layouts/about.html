@@ -1,34 +1,48 @@
 ---
-layout: default
 ---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About</title>
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+</head>
+<body>
 
+<div id="scroll-progress-bar"></div>
 <div id="cursor-glow"></div>
+
+<nav class="top-nav">
+  <a href="{{ '/' | relative_url }}">Home</a>
+  <div>
+    <a href="{{ '/#category' | relative_url }}">Category</a>
+    <a href="{{ '/#posts' | relative_url }}">Post</a>
+    <a href="{{ '/about/' | relative_url }}">about</a>
+  </div>
+</nav>
 
 <section class="about-section">
   <h1>About</h1>
   <div class="about-profile">
-    <img src="/assets/images/profile.jpg" alt="프로필 사진" class="profile-circle-about">
+    <img src="{{ '/assets/images/profile.jpg' | relative_url }}" alt="프로필 사진" class="profile-circle-about">
   </div>
   <div class="about-info">
     <h2 class="about-name">nnn</h2>
     <p class="about-school">이화여자대학교 컴퓨터공학과</p>
     <ul class="about-links">
       <li>
-        <img src="/assets/images/icon-email.png" alt="email" class="about-icon">
+        <img src="{{ '/assets/images/icon-email.png' | relative_url }}" alt="email" class="about-icon">
         <a href="mailto:nonono2566@naver.com">nonono2566@naver.com</a>
       </li>
       <li>
-        <img src="/assets/images/icon-instagram.png" alt="instagram" class="about-icon">
+        <img src="{{ '/assets/images/icon-instagram.png' | relative_url }}" alt="instagram" class="about-icon">
         <a href="https://instagram.com/no.no_n0" target="_blank">no.no_n0</a>
       </li>
     </ul>
   </div>
 </section>
 
-<script>
-const glow = document.getElementById('cursor-glow');
-document.addEventListener('mousemove', e => {
-  glow.style.left = e.clientX + 'px';
-  glow.style.top  = e.clientY + 'px';
-});
-</script>
+<script src="{{ '/assets/js/site-effects.js' | relative_url }}"></script>
+</body>
+</html>
