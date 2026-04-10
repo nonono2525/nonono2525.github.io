@@ -4,53 +4,169 @@ title: Home
 permalink: /
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
-<script defer src="{{ '/assets/js/cursor-glow.js' | relative_url }}"></script>
+<style>
+/* ── 커서 글로우 ── */
+#cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  z-index: 9998;
+  transition: left 0.08s, top 0.08s;
+}
 
-<div class="home-page">
-  <header class="top-nav">
-    <a href="{{ '/' | relative_url }}" class="nav-link active">Home</a>
-    <nav class="nav-right">
-      <a href="#category" class="nav-link">Category</a>
-      <a href="/posts/">Posts</a>
-      <a href="{{ '/about/' | relative_url }}" class="nav-link">about</a>
-      <a href="/search/" class="search-link">🔍</a>
-    </nav>
-  </header>
+/* ── 스크롤 진행바 ── */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: #4da6e8;
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
 
-  <div class="top-progress">
-    <div class="top-progress-fill"></div>
+/* ── 히어로 섹션 ── */
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 40px 40px;
+  gap: 40px;
+}
+.hero-text h1 { font-size: 2em; font-weight: bold; }
+.hero-text p  { margin-top: 16px; line-height: 1.8; color: #ccc; }
+
+.profile-circle {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #4da6e8;
+  box-shadow: 0 0 20px rgba(77,166,232,0.5);
+  display: block;
+}
+
+/* ── 구분선 ── */
+.section-divider {
+  border: none;
+  border-top: 1px solid #444;
+  margin: 40px;
+}
+
+/* ── 카테고리 ── */
+.category-section, .posts-section {
+  padding: 40px;
+}
+.category-section h2, .posts-section h2 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.ko { font-size: 0.5em; color: #aaa; font-weight: normal; }
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.category-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4da6e8;
+  color: #fff !important;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 12px;
+  padding: 28px 10px;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(.36,2,.6,1), box-shadow 0.2s;
+}
+.category-block:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 24px rgba(77,166,232,0.4);
+}
+
+/* ── 포스트 목록 ── */
+.post-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #333;
+}
+.post-item a { color: #fff; text-decoration: none; }
+.post-date { color: #888; font-size: 0.85em; }
+</style>
+
+<div id="scroll-progress-bar"></div>
+<div id="cursor-glow"></div>
+
+<!-- 히어로 -->
+<section class="hero-section">
+  <div class="hero-text">
+    <h1>환영합니다 <em>nnn</em> 블로그입니다</h1>
+    <p>이 블로그는 보안과 관련하여 기록하는<br>어쩌고저쩌고</p>
   </div>
+  <div>
+    <img src="{{ '/assets/images/profile.jpg' | relative_url }}"
+         alt="프로필 사진" class="profile-circle">
+  </div>
+</section>
 
-  <section class="hero-section">
-    <div class="hero-left">
-      <h1 class="hero-title">환영합니다 nnn의 Blog입니다</h1>
-      <p class="hero-contact">Contact : nonono2566@naver.com</p>
-    </div>
+<hr class="section-divider">
 
-    <div class="hero-right">
-      <div class="profile-circle">
-        <img src="{{ '/assets/images/profile.jpg' | relative_url }}" alt="프로필 사진" class="profile-image">
-      </div>
-    </div>
-  </section>
+<!-- 카테고리 -->
+<section id="category" class="category-section">
+  <h2>Category <span class="ko">카테고리</span></h2>
+  <div class="category-grid">
+    <a href="{{ '/development/' | relative_url }}" class="category-block">개발</a>
+    <a href="{{ '/ctf/' | relative_url }}" class="category-block">CTF/Wargame</a>
+    <a href="{{ '/bugbounty/' | relative_url }}" class="category-block">Bug Bounty</a>
+    <a href="{{ '/docs/' | relative_url }}" class="category-block">블로그/기술문서</a>
+    <a href="{{ '/papers/' | relative_url }}" class="category-block">논문/컨퍼런스</a>
+    <a href="{{ '/achievements/' | relative_url }}" class="category-block">공모전/자격증</a>
+  </div>
+</section>
 
-  <hr class="section-line">
+<hr class="section-divider">
 
-  <section id="category" class="category-section">
-    <h2 class="section-title">Category</h2>
+<!-- 포스트 -->
+<section id="posts" class="posts-section">
+  <h2>Posts <span class="ko">게시물</span></h2>
+  {% for post in site.posts limit:10 %}
+  <div class="post-item">
+    <a href="{{ post.url }}">{{ post.title }}</a>
+    <span class="post-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+  </div>
+  {% endfor %}
+</section>
 
-    <div class="category-grid">
-  <a href="{{ '/development/' | relative_url }}" class="category-card">개발</a>
-  <a href="{{ '/ctf/' | relative_url }}" class="category-card">CTF/Wargame</a>
-  <a href="{{ '/bugbounty/' | relative_url }}" class="category-card">Bug Bounty</a>
-  <a href="{{ '/docs/' | relative_url }}" class="category-card">블로그/기술문서</a>
-  <a href="{{ '/papers/' | relative_url }}" class="category-card">논문/컨퍼런스</a>
-  <a href="{{ '/achievements/' | relative_url }}" class="category-card">공모전/자격증</a>
-    </div>
-  </section>
+<script>
+// 스크롤 진행바
+const bar = document.getElementById('scroll-progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+  bar.style.width = pct + '%';
+});
 
-  <hr class="section-line bottom-line">
-</div>
+// 커서 글로우
+const glow = document.getElementById('cursor-glow');
+document.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top  = e.clientY + 'px';
+});
 
-
+// 네비 부드러운 스크롤
+document.querySelectorAll('a[href*="#category"], a[href*="#posts"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const hash = link.getAttribute('href').split('#')[1];
+    const target = document.getElementById(hash);
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
