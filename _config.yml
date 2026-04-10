@@ -1,4 +1,5 @@
-theme: minimal-mistakes-jekyll  # 또는 remote_theme
+#theme: minimal-mistakes-jekyll  # 또는 remote_theme
+remote_theme: mmistakes/minimal-mistakes
 
 title: "nnn Blog"
 name: "nnn"
