@@ -1,8 +1,9 @@
 ---
 layout: post-detail
-title: "첫 번째 글"
-date: 2026-04-10
-categories:ctf
+title: "첫 번째 예시글"
+date: 2026-04-11
+category: "ctf"
 ---
 
-예시 블로그입니다.
+난 이제 지쳣어요
+땡벌 땡벌
