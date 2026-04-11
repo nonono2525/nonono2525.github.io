@@ -36,25 +36,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   document.querySelectorAll(".category-block").forEach((block) => {
-    block.addEventListener("mouseenter", () => {
-      block.style.transform = "scale(1.06)";
-      if (glow) {
-        glow.style.width = "320px";
-        glow.style.height = "320px";
-        glow.style.opacity = "1";
-      }
-    });
-
-    block.addEventListener("mouseleave", () => {
-      block.style.transform = "scale(1)";
-      if (glow) {
-        glow.style.width = "260px";
-        glow.style.height = "260px";
-        glow.style.opacity = "0.9";
-      }
-    });
+  block.addEventListener("mouseenter", () => {
+    block.style.transform = "scale(1.06)";
   });
 
+  block.addEventListener("mouseleave", () => {
+    block.style.transform = "scale(1)";
+  });
+});
+  
   document.querySelectorAll('a[href^="/#"], a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (e) => {
       const href = link.getAttribute("href");
