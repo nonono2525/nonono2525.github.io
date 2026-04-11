@@ -26,7 +26,7 @@
     <hr class="section-divider">
 
     <div class="category-post-list">
-      {% assign filtered_posts = site.posts | where: "category_key", page.category_key %}
+      {% assign filtered_posts = site.posts | where: "category", page.category_key %}
 
       {% if filtered_posts.size > 0 %}
         {% for post in filtered_posts %}
@@ -37,23 +37,9 @@
             {% endif %}
           </a>
         {% endfor %}
-      <div class="category-post-list">
-        {% assign filtered_posts = site.posts | where: "category", page.category_key %}
-
-        {% if filtered_posts.size > 0 %}
-          {% for post in filtered_posts %}
-            <a class="category-post-card" href="{{ post.url | relative_url }}">
-              <h2>{{ post.title }}</h2>
-              {% if post.excerpt %}
-                <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
-              {% endif %}
-            </a>
-          {% endfor %}
-        {% else %}
-          <p class="no-posts">아직 게시물이 없습니다.</p>
-        {% endif %}
-      </div>
-</div>
+      {% else %}
+        <p class="no-posts">아직 게시물이 없습니다.</p>
+      {% endif %}
     </div>
   </section>
 
