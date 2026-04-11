@@ -22,22 +22,17 @@
   </nav>
 
   <main class="post-detail-page">
-  <article class="post-detail-article">
-    <div class="post-detail-header">
-      <h1 class="post-detail-title">{{ page.title }}</h1>
-      <p class="post-detail-meta">{{ page.date | date: "%Y.%m.%d" }}</p>
-    </div>
+    <article class="post-detail-article">
+      <div class="post-detail-header">
+        <h1 class="post-detail-title">{{ page.title }}</h1>
+        <p class="post-detail-meta">{{ page.date | date: "%Y.%m.%d" }}</p>
+      </div>
 
-    <div class="post-detail-header">
-      <h1 class="post-detail-title">{{ page.title }}</h1>
-      <p class="post-detail-meta">{{ page.date | date: "%Y.%m.%d" }}</p>
-    </div>
-
-    <div class="post-detail-content">
-      {{ content }}
-    </div>
-  </article>
-</main>
+      <div class="post-detail-content">
+        {{ content }}
+      </div>
+    </article>
+  </main>
 
   <script src="{{ '/assets/js/site-effects.js' | relative_url }}"></script>
 </body>
