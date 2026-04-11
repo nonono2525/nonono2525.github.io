@@ -14,13 +14,13 @@
 #cursor-glow {
   pointer-events: none;
   position: fixed;
-  width: 180px;
-  height: 180px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 50%);
+  background: radial-gradient(circle, rgba(255,255,255,0.22) 0%, transparent 45%);
   transform: translate(-50%, -50%);
   z-index: 9998;
-  transition: width 0.2s, height 0.2s;
+  transition: left 0.05s, top 0.05s;
 }
 
 /* ── 네비게이션 반투명 ───────────────────────── */
