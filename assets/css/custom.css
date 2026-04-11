@@ -429,28 +429,39 @@ body {
 
 .post-detail-page {
   min-height: 100vh;
-  padding: 110px 36px 60px;
+  padding: 110px 34px 60px;
 }
 
 .post-detail-article {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-.post-detail-title {
-  font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 10px;
-}
-
-.post-detail-meta {
-  color: #aab2bf;
-  font-size: 0.95rem;
+.post-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
   margin-bottom: 18px;
 }
 
+.post-detail-title {
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+  color: #fff;
+}
+
+.post-detail-meta {
+  margin: 0;
+  font-size: 1rem;
+  color: #f2f2f2;
+  white-space: nowrap;
+}
+
 .post-detail-content {
-  margin-top: 28px;
+  margin-top: 42px;
   line-height: 1.9;
   font-size: 1.08rem;
   color: #eef2f7;
@@ -503,4 +514,20 @@ body {
   padding-left: 14px;
   margin: 20px 0;
   color: #d9e2ee;
+}
+
+@media (max-width: 768px) {
+  .post-detail-page {
+    padding: 96px 24px 48px;
+  }
+
+  .post-detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .post-detail-title {
+    font-size: 2.4rem;
+  }
 }
