@@ -1,0 +1,38 @@
+---
+---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+</head>
+<body>
+  <div id="scroll-progress-bar"></div>
+  <div id="cursor-glow"></div>
+
+  <nav class="top-nav">
+    <a href="{{ '/' | relative_url }}">Home</a>
+    <div>
+      <a href="{{ '/#category' | relative_url }}">Category</a>
+      <a href="{{ '/#posts' | relative_url }}">Post</a>
+      <a href="{{ '/about/' | relative_url }}">about</a>
+    </div>
+  </nav>
+
+  <main class="post-detail-page">
+    <article class="post-detail-article">
+      <h1 class="post-detail-title">{{ page.title }}</h1>
+      <p class="post-detail-meta">{{ page.date | date: "%Y.%m.%d" }}</p>
+      <hr class="section-divider">
+
+      <div class="post-detail-content">
+        {{ content }}
+      </div>
+    </article>
+  </main>
+
+  <script src="{{ '/assets/js/site-effects.js' | relative_url }}"></script>
+</body>
+</html>
