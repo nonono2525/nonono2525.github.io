@@ -9,40 +9,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
 
-    body {
-      background: #2d2d2d;
-      color: #fff;
-      font-family: sans-serif;
-    }
-
-    /* ── 네비게이션 ── */
-    .top-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 40px;
-      background: rgba(30,30,30,0.7);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      font-size: 0.95em;
-    }
-    .top-nav a { color: #fff; text-decoration: none; margin-left: 24px; }
-    .top-nav a:first-child { margin-left: 0; font-weight: bold; }
-
-    /* ── 스크롤 진행바 ── */
-    #scroll-progress-bar {
-      position: fixed;
-      top: 41.5px; 
-      left: 0;
-      height: 3px;
-      width: 0%;
-      background: #4da6e8;
-      z-index: 9999;
-      transition: width 0.1s linear;
-    }
-
+    
     /* ── 커서 글로우 ── */
     #cursor-glow {
       pointer-events: none;
@@ -76,13 +43,6 @@
       border: 4px solid #4da6e8;
       box-shadow: 0 0 24px rgba(77,166,232,0.6);
       flex-shrink: 0;
-    }
-
-    /* ── 구분선 ── */
-    .section-divider {
-      border: none;
-      border-top: 1px solid #444;
-      margin: 0 40px;
     }
 
     /* ── 카테고리 ── */
