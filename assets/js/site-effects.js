@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".category-block").forEach((block) => {
     block.addEventListener("mouseenter", () => {
-      block.style.transform = "scale(1.02)";
+      block.style.transform = "scale(1.01)";
     });
 
   block.addEventListener("mouseleave", () => {
