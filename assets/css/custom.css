@@ -443,6 +443,8 @@ body {
   align-items: flex-end;
   gap: 24px;
   margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
 }
 
 .post-detail-title {
