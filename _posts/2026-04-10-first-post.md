@@ -1,4 +1,5 @@
 ---
+layout: post-detail
 title: "첫 번째 글"
 date: 2026-04-10
 categories:
