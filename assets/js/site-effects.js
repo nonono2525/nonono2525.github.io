@@ -40,13 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
       block.style.transform = "scale(1.01)";
     });
 
-  block.addEventListener("mouseleave", () => {
-    block.style.transform = "scale(1)";
+    block.addEventListener("mouseleave", () => {
+      block.style.transform = "scale(1)";
+    });
   });
-});
-  });
-});
-  
+
   document.querySelectorAll('a[href^="/#"], a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (e) => {
       const href = link.getAttribute("href");
