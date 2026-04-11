@@ -426,3 +426,81 @@ body {
   line-height: 1.6;
   color: #222;
 }
+
+.post-detail-page {
+  min-height: 100vh;
+  padding: 110px 36px 60px;
+}
+
+.post-detail-article {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.post-detail-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.post-detail-meta {
+  color: #aab2bf;
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+}
+
+.post-detail-content {
+  margin-top: 28px;
+  line-height: 1.9;
+  font-size: 1.08rem;
+  color: #eef2f7;
+}
+
+.post-detail-content h1,
+.post-detail-content h2,
+.post-detail-content h3 {
+  margin-top: 32px;
+  margin-bottom: 14px;
+  color: #ffffff;
+}
+
+.post-detail-content p {
+  margin-bottom: 16px;
+}
+
+.post-detail-content a {
+  color: #8ec5ff;
+  text-decoration: none;
+}
+
+.post-detail-content a:hover {
+  text-decoration: underline;
+}
+
+.post-detail-content img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.post-detail-content code {
+  background: rgba(255,255,255,0.08);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.95em;
+}
+
+.post-detail-content pre {
+  background: rgba(0,0,0,0.25);
+  padding: 16px;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.post-detail-content blockquote {
+  border-left: 4px solid #5a9bdb;
+  padding-left: 14px;
+  margin: 20px 0;
+  color: #d9e2ee;
+}
