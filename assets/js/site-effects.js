@@ -36,12 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   document.querySelectorAll(".category-block").forEach((block) => {
-  block.addEventListener("mouseenter", () => {
-    block.style.transform = "scale(1.06)";
-  });
+    block.addEventListener("mouseenter", () => {
+      block.style.transform = "scale(1.02)";
+    });
 
   block.addEventListener("mouseleave", () => {
     block.style.transform = "scale(1)";
+  });
+});
   });
 });
   
