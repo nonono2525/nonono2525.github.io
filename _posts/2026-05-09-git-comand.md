@@ -20,7 +20,6 @@ category: "dev"
 ```bash
 git branch feature        # feature 브랜치 생성
 git checkout feature      # feature 브랜치로 이동 (HEAD 변경)
-git checkout -b feature   # 생성 + 이동 한번에
 ```
 
 ### HEAD
@@ -79,8 +78,6 @@ git branch -f main HEAD~3    # main 브랜치를 강제로 3커밋 위로 이동
 ### git reset
 브랜치를 이전 커밋으로 되돌림. 애초에 커밋하지 않은 것처럼 만듦.
 
-> ⚠️ 로컬에서만 사용. 이미 push한 커밋에 쓰면 원격과 히스토리가 어긋남.
-
 ```bash
 git reset HEAD~1
 ```
@@ -88,7 +85,7 @@ git reset HEAD~1
 ### git revert
 되돌린 내용을 **새 커밋**으로 만들어 저장. 이전 커밋의 반대 변경사항이 새 커밋에 담김.
 
-> ✅ 원격 저장소에 push된 커밋을 되돌릴 때 사용. 다른 사람과 함께 작업하는 브랜치라면 항상 revert.
+> ✅ 원격 저장소에 push된 커밋을 되돌릴 때 사용. 다른 사람과 함께 작업하는 브랜치라면 revert.
 
 ```bash
 git revert HEAD
@@ -109,14 +106,6 @@ git cherry-pick abc123 def456   # 두 커밋을 현재 위치에 복사
 ### git rebase -i HEAD~4
 인터랙티브 리베이스. 커밋 해시를 몰라도 됨. UI로 커밋 순서 변경, 삭제, 스쿼시(합치기) 가능.
 
-디버그용 print 코드가 섞인 커밋을 제거하거나 순서를 바꿔 main에 깔끔하게 합칠 때 유용.
-
-```bash
-# 에디터에서 아래 항목 수정 가능:
-pick abc123  기능 추가
-pick def456  버그 수정   # 순서 바꾸거나
-drop ghi789  디버그 코드  # drop으로 제거
-```
 
 ---
 
