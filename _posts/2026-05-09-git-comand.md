@@ -176,4 +176,7 @@ git checkout -b myBranch o/main   # 생성과 동시에 o/main 추적
 git branch -u o/main foo          # 기존 foo 브랜치가 o/main 추적하도록 설정
 ```
 
+<img width="898" height="734" alt="스크린샷 2026-05-07 214317" src="https://github.com/user-attachments/assets/ed4e2d76-17f7-406a-a2c5-86048fdd45fc" />
+<img width="1006" height="557" alt="스크린샷 2026-05-08 235402" src="https://github.com/user-attachments/assets/952b447d-8c17-454c-9bc9-681b51fb4d78" />
+
 
