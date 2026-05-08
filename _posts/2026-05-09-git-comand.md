@@ -1,3 +1,10 @@
+---
+layout: post-detail
+title: "두 번째 예시글"
+date: 2026-04-11
+category: "dev"
+---
+
 # Git 명령어 정리
 
 ---
