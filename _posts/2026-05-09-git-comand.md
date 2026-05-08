@@ -1,7 +1,7 @@
 ---
 layout: post-detail
 title: "git 배우기"
-date: 2026-05-09
+date: 2026-05-08
 category: "dev"
 ---
 
