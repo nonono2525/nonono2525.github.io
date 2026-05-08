@@ -1,7 +1,7 @@
 ---
 layout: post-detail
-title: "두 번째 예시글"
-date: 2026-04-11
+title: "git 배우기"
+date: 2026-05-09
 category: "dev"
 ---
 
@@ -175,3 +175,5 @@ git push origin :foo         # 원격 foo 브랜치 삭제 (없음을 push)
 git checkout -b myBranch o/main   # 생성과 동시에 o/main 추적
 git branch -u o/main foo          # 기존 foo 브랜치가 o/main 추적하도록 설정
 ```
+
+
