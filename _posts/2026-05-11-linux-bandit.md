@@ -611,51 +611,67 @@ crontab -l    # 목록 보기
 crontab -e    # 편집
 crontab -r    # 삭제 (주의: 전체 삭제!)
 ```
+먼저 /etc/cron.d/ 디렉토리 안에 어떤 파일이 있는지 확인해보자
+<img width="939" height="511" alt="스크린샷 2026-05-11 125955" src="https://github.com/user-attachments/assets/1f0ef973-b20b-40ce-926a-389867af7e36" />
+우리가 읽을 수 있는 파일이 6개가 있는데 (-------r-- 형태) 그 중에서 누가봐도 수상한 cronjob_bandit22 의 내용을 출력보면
 
-```bash
-cat /etc/cron.d/cronjob_bandit22
-cat /usr/bin/cronjob_bandit22.sh
-```
+* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
 
-스크립트가 `/tmp/t706~~` 파일에 bandit22 비밀번호를 저장하고 있으므로 해당 파일을 읽으면 된다.
+매분마다 bandit22의 권한으로 /usr/bin/cronjob_bandit22.sh 를 실행시키고 있다
+
+<img width="1005" height="170" alt="스크린샷 2026-05-11 131351" src="https://github.com/user-attachments/assets/226b1e32-e007-47d0-953d-f87d8eb83ea4" />
+/usr/bin/cronjob_bandit22.sh 의 내용을 출력해보자
+
+/tmp/t706~~ 의 파일의 권한을 644로 하고 변경하고
+
+bandit22의 비밀번호를 읽어서 /tmp/t706~~ 파일 안에 넣었다.
+
+따라서 이걸 출력하면 끄읏.
 
 ---
 
 ## Level 22 → 23
 
 이전 레벨과 동일한 접근으로 `cronjob_bandit23.sh`을 분석한다.
+<img width="1063" height="682" alt="스크린샷 2026-05-11 133603" src="https://github.com/user-attachments/assets/7e69c4b6-c8db-40a0-be90-7871e8d75a19" />
 
-```bash
-cat /usr/bin/cronjob_bandit23.sh
-```
 
 스크립트는 `echo I am user bandit23 | md5sum | cut -d ' ' -f 1` 의 결과를 파일명으로 사용하여 `/tmp/$mytarget`에 비밀번호를 저장한다.
 
-```bash
-echo I am user bandit23 | md5sum | cut -d ' ' -f 1
-# 위 결과값을 mytarget으로 사용
-cat /tmp/[위에서 나온 값]
-```
+따라서 이 파일명을 알아낸 뒤 비밀번호를 알아내면 끄읏
+
+<img width="1066" height="123" alt="스크린샷 2026-05-11 140732" src="https://github.com/user-attachments/assets/484d35fb-0990-402e-9f9f-ebfef5226457" />
+
 
 ---
 
 ## Level 23 → 24
 
-`cronjob_bandit24.sh`는 `/var/spool/bandit23/foo` 안에서 **소유자가 bandit23인 파일을 실행한 뒤 삭제**한다.
+<img width="995" height="568" alt="스크린샷 2026-05-11 141730" src="https://github.com/user-attachments/assets/61dbbd8d-0638-493f-b2d4-b5990d1da4cd" />
 
-bandit24 권한으로 실행되는 점을 이용해, 비밀번호를 읽어오는 스크립트를 작성하여 해당 디렉토리에 복사한다.
+결론적으로 얘기하자면, 현재 $myname은 bandit23이고,
 
-```bash
-# /tmp/작업폴더/script.sh 내용
-cat /etc/bandit_pass/bandit24 > /tmp/작업폴더/pw
-```
+/var/spool/bandit23/foo 로 이동하여 소유자가 bandit23인 일반 파일인 경우에 실행하고, 실행 여부와 상관없이 모든 파일을 삭제한다
 
-```bash
-chmod +x /tmp/작업폴더/script.sh
-cp /tmp/작업폴더/script.sh /var/spool/bandit23/foo/
-# 잠시 후
-cat /tmp/작업폴더/pw
-```
+ 
+여기서 우리는 bandit24의 비밀번호가 궁금한데, 그것은 bandit24의 권한이다.
+
+근데 이 파일은 bandit24의 권한으로 실행되고 있고, 소유자가 bandit23인 파일을 대신 실행해주는 거다
+
+따라서, bandit24의 비밀번호를 읽어와 다른 곳에 저장하는 스크립트의 파일을  /var/spool/bandit23/foo에 저장한다면!
+
+이 파일을 실행시켜 우리는 비밀번호를 얻어낼 수 있을 거다
+
+
+/tmp/adoifjasoi/scripts.sh 파일에 cat /etc/bandit_pass/bandit24 > /tmp/adoifjasoi/pw 라고 적고 (권한 꼭 실행할 수 있게 변경!)
+
+이를 /var/spool/bandit23/foo 디렉토리 안에 복사하는 방식을 선택했다
+
+<img width="1050" height="200" alt="스크린샷 2026-05-11 210208" src="https://github.com/user-attachments/assets/3b9e31af-0160-4736-b2d9-fdfb1b6e005c" />
+
+위와 같이 pw 파일이 생긴 걸 볼 수 있다!
+
+이걸 읽어주면 끄읏!
 
 ---
 
@@ -664,20 +680,35 @@ cat /tmp/작업폴더/pw
 **bandit24 비밀번호 + 4자리 PIN**을 30002번 포트로 전송하면 bandit25 비밀번호를 받을 수 있다.  
 PIN은 0000~9999까지 **브루트포스**로 찾아야 한다.
 
-```bash
-# /tmp/작업폴더/brute.sh
-PASSWORD="bandit24비밀번호"
-for pin in $(seq -w 0 9999); do
-    echo "$PASSWORD $pin"
-done | nc localhost 30002 > result.txt
-```
+<img width="1703" height="715" alt="스크린샷 2026-05-11 220923" src="https://github.com/user-attachments/assets/e894cee0-d567-4392-b718-1588588e84a9" />
+
 
 ```bash
-chmod +x brute.sh
-./brute.sh
-grep -v "Wrong" result.txt
+# /tmp/fjdafiodoijfd/bforce.sh
+PASSWORD="bandit24비밀번호"
+for pin in {0000..9999}
+do
+    echo "$PASSWORD $pin"
+done | nc localhost 30002 > /tmp/fjdafiodoijfd/result.txt
+
 ```
+PASSWORD라는 변수를 설정한 뒤에, bandit24 비밀번호를 저장하고
+
+pin이라는 변수에 0000부터 9999까지 하나씩 대입하며 루프를 돌렸다
+
+이때 매번, 비밀번호+pin 형태의 문자열이 만들어지는데 이를 30002번 포트에서 돌아가는 서버로 보냈다
+
+그리고 돌아오는 응답을 result.txt 파일에 모두 저장했다
+
+
+```bash
+chmod +x /tmp/fjdafiodoijfd/bforce.sh
+/tmp/fjdafiodoijfd//bforce.sh
+grep -v "Wrong" /tmp/fjdafiodoijfd/result.txt
+```
+만든 스크립트 파일의 권한을 변경한 뒤 실행해주었다
+
+실행한 결과로 얻은 파일을 grep을 이용하여 정답만 필터링 하였다. ( "Wrong"이라는 글자가 포함되지 않은 줄만 보이도록)
 
 ---
 
-*작성자 본인의 OverTheWire Bandit 워게임 풀이 기록*
