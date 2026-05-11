@@ -122,42 +122,53 @@ find . -size -1k        # 1KB 미만 파일
 find . -name "*.log" -delete              # 찾은 파일 삭제
 find . -name "*.sh" -exec chmod +x {} \;  # 권한 변경
 ```
+<img width="1228" height="415" alt="스크린샷 2026-05-09 170451" src="https://github.com/user-attachments/assets/e92ee418-3f53-4d05-82fd-e47e5b362af2" />
+
+exit을 통해 서버에서 나가고
+
+ssh -p 2220 bandit1@bandit.labs.overthewire.org 으로 레벨 1 서버에 접속한 다음 방금 얻은 비밀번호를 입력하면 된다
 
 ---
 
 ## Level 1 → 2
 
-다음 레벨의 비밀번호는 홈 디렉터리에 있는 `-` 라는 파일에 저장되어 있다.
+다음 레벨의 비밀번호는 홈 디렉터리에 있는 '-' 라는 파일에 저장되어 있다고 한다.
 
-보통 대시(`-`)는 명령어의 옵션과 인수로 사용되기 때문에, `-` 파일을 열기 위해서는 더 많은 주의가 필요하다.
+보통 dash(-)는 명령어의 옵션과 arguments로 사용되기 때문에 "-" 파일을 열기위해서는 더 많은 주의가 필요하다.
 
-```bash
-cat ./-          # ./ 접두사 사용
-cat -- -         # -- 뒤에 입력
-cat < -          # 리다이렉션 이용
-```
+-으로 시작하는 경우엔 ./-file.txt 라고 적거나 또는 -- -file.txt 를 이용한다
+
+cat의 경우에는 cat < - 
+
+이런 식으로 리다이렉션을 이용하여 출력할 수 있다
+<img width="491" height="123" alt="스크린샷 2026-05-09 173525" src="https://github.com/user-attachments/assets/4460e32d-1ad3-4628-b001-0c55f0ef107c" />
+
 
 ---
 
 ## Level 2 → 3
 
-파일 이름에 **공백**이 포함된 경우 따옴표 또는 이스케이프 문자를 사용한다.
+이번 문제에는 파일 이름에 공백이 포함되어 있다
+<img width="795" height="167" alt="스크린샷 2026-05-09 174556" src="https://github.com/user-attachments/assets/bd83e28a-2cf0-4c96-8b1e-45642ac27498" />
 
-```bash
-cat "my file.txt"
-cat my\ file.txt
-```
+파일 이름에 공백이 포함되어 있는 경우에는
+
+"my file.txt" 또는 my\ file.txt 처럼 따옴표나 이스케이프 문자를 쓰면 된다
+
+
 
 ---
 
 ## Level 3 → 4
 
-비밀번호가 `inhere` 디렉토리의 **숨김 파일** 안에 있다.
+이번 문제에선 비밀번호가 inhere디렉토리의 숨김 파일 안에 있다고 한다. 
 
 ```bash
 ls -a    # 숨김 파일 포함
 ls -A    # . 과 .. 제외하고 숨김 파일만
 ```
+
+<img width="719" height="293" alt="스크린샷 2026-05-09 175632" src="https://github.com/user-attachments/assets/f41c0388-e41f-40d8-9591-0738e4fb3f8a" />
 
 > `.` 은 현재 디렉토리, `..` 은 상위 디렉토리를 의미한다.
 
@@ -167,14 +178,17 @@ ls -A    # . 과 .. 제외하고 숨김 파일만
 
 **human-readable 파일**에 비밀번호가 있다.
 
+말그대로 사람이 읽을 수 있는 파일!
+
 - human-readable: `.txt`, `.csv`, `.py`, `.html`, `.json` 등
 - non-readable: `.exe`, `.jpg`, `.mp3` 등 이진 데이터
 
 파일 이름이 `-`로 시작하기 때문에 `./`를 붙여서 `file` 명령어를 사용한다.
 
-```bash
-file ./-file07   # -file07만 ASCII text(human-readable)
-```
+<img width="1272" height="820" alt="스크린샷 2026-05-09 180802" src="https://github.com/user-attachments/assets/03e12aa2-3086-40a1-b2d9-dec8687da78e" />
+
+-file07만 ASCII text(human-readable)
+
 
 ---
 
@@ -185,8 +199,12 @@ file ./-file07   # -file07만 ASCII text(human-readable)
 `inhere` 디렉토리 안에 디렉토리가 20개나 있으므로 `find` 명령어를 활용한다.
 
 ```bash
+find . -type f          # 파일만
+find . -size +100M      # 100MB 초과 파일
+
 find . -type f -size 1033c
 ```
+<img width="1442" height="398" alt="스크린샷 2026-05-09 183244" src="https://github.com/user-attachments/assets/729835a0-4006-4897-85d6-1bf812dad71e" />
 
 파일이 하나 나왔고, `file` 명령어로 확인하니 ASCII text였다.
 
@@ -199,8 +217,13 @@ find . -type f -size 1033c
 ```bash
 find / -type f -user bandit7 -group bandit6 -size 33c
 ```
+find . -type f -user bandit7 -group bandit6
 
-전체 시스템에서 검색하면 Permission denied가 아닌 파일을 찾을 수 있다.
+라고 입력했을 때 아무것도 나오지 않았다. 그래서 전체 시스템에서 찾아봤다
+
+되게 많은 파일들 중에서 Permission denied가 아닌 파일을 찾았다
+<img width="680" height="426" alt="스크린샷 2026-05-09 192318" src="https://github.com/user-attachments/assets/f5823fc9-5b62-42b2-b46e-19bfe8f62897" />
+<img width="847" height="70" alt="스크린샷 2026-05-09 192334" src="https://github.com/user-attachments/assets/b0d54e4a-2030-4a30-a54a-15a71f072af8" />
 
 ---
 
@@ -220,9 +243,7 @@ grep -E "cat|dog" file.txt     # OR 검색
 ps aux | grep "python"         # 파이프 활용
 ```
 
-```bash
-grep "millionth" data.txt
-```
+<img width="745" height="53" alt="스크린샷 2026-05-09 193331" src="https://github.com/user-attachments/assets/6c6cfe74-ac64-415f-8c01-ff2948cf4a97" />
 
 ---
 
@@ -248,9 +269,36 @@ uniq -d file.txt       # 중복된 줄만 출력
 uniq -u file.txt       # 중복 없는 줄만 출력
 ```
 
+**Redirection** = 이 스트림의 방향을 바꾸는 것 (파일로, 파일에서)
 ```bash
-sort data.txt | uniq -u
+stdout → 파일로 (>, >>)
+ls > output.txt          # ls 결과를 파일에 저장 (덮어쓰기)
+ls >> output.txt         # ls 결과를 파일에 추가 (이어쓰기)
+
+echo "hello" > file.txt  # "hello"를 파일에 저장
+echo "world" >> file.txt # "world"를 파일에 추가
+
+ 
+파일 → stdin으로 (<)
+sort < file.txt          # file.txt 내용을 sort의 입력으로
+grep "error" < log.txt   # log.txt를 grep의 입력으로
+
+ 
+stderr 처리 (2>)
+ls /없는경로 2> error.txt        # 에러만 파일로
+ls /없는경로 2>> error.txt       # 에러를 파일에 추가
+ls /없는경로 2> /dev/null        # 에러 무시 (버리기)
 ```
+
+**Piping** = 한 프로그램의 stdout을 다른 프로그램의 stdin으로 연결
+
+```bash
+ls | grep "txt"           # ls 출력에서 txt 포함 줄만 필터
+cat log.txt | sort        # 파일 내용을 정렬
+```
+ (처음 풀었을 때 정렬된 상태로 해야하는 걸 몰라서 헤맸다)
+ <img width="623" height="62" alt="스크린샷 2026-05-09 225054" src="https://github.com/user-attachments/assets/4ae65864-0995-4100-85b8-a736747c86ca" />
+
 
 ---
 
@@ -268,6 +316,7 @@ strings binary_file | grep "password"
 ```bash
 strings data.txt | grep "="
 ```
+<img width="843" height="475" alt="스크린샷 2026-05-09 230847" src="https://github.com/user-attachments/assets/cc087509-ca2b-4894-94ef-de46b4757286" />
 
 > `grep`을 먼저 적용하면 `binary file matches` 오류가 발생하므로 순서에 주의!
 
@@ -290,8 +339,6 @@ echo "aGVsbG8K" | base64 -d      # 문자열 디코딩
 base64 -d data.txt
 ```
 
-> 폴더가 읽기 전용이면 `/tmp/` 디렉토리를 활용하면 된다.
-
 ---
 
 ## Level 11 → 12
@@ -307,9 +354,13 @@ echo "hello 123" | tr -d '0-9'        # 숫자 삭제
 echo "heeello" | tr -s 'e'            # 연속된 같은 문자 압축
 ```
 
-```bash
-cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
-```
+<img width="881" height="70" alt="스크린샷 2026-05-09 234708" src="https://github.com/user-attachments/assets/0f1916ff-eea1-4bb5-8d95-6a8dfdb9b547" />
+
+형식: tr '원래세트' '바꿀세트' 이므로
+
+'A-Za-z' 'N-ZA-Mn-za-m'  요런 식으로 적어두 된다
+
+처음에 그걸 몰랐어서... 바보 코드를 썼다
 
 ---
 
@@ -324,13 +375,14 @@ mktemp -d          # 임시 디렉토리 생성
 cp data.txt /tmp/작업폴더/
 ```
 
-풀이 절차:
-
 1. `file [파일명]` — 파일 형식 확인
 2. `mv [파일명] [파일명.확장자]` — 확장자 맞게 이름 변경
 3. 압축 해제 명령어 실행 (`tar`, `gzip`, `bzip2` 등)
-4. `ls -l` 로 새로 생긴 파일 확인
+4. `ls -l` 로 새로 생긴 파일 확인 (실제로 풀때는 -l 옵션을 안 넣어서.. 조금 오래걸렸다)
 5. 위 과정 반복
+
+<img width="1887" height="900" alt="스크린샷 2026-05-10 005342" src="https://github.com/user-attachments/assets/3781b075-1510-46d1-a0ce-3a9907a83f97" />
+
 
 ---
 
@@ -360,7 +412,25 @@ chmod u+x file   # 소유자에게 실행 권한 추가
 chmod g-w file   # 그룹의 쓰기 권한 제거
 ```
 
-풀이:
+이번 문제가 나는 조금 까다롭게 느껴졌다. 이래저래 오류도 많았고.. 
+
+최종적으로 어떻게 풀었냐면
+
+ls 했을 때 파일 두 개가 나왔는데, 하나는 HINT 다른 하나는 sshkey.private 이라는 파일이었다
+
+아까 ssh 명령어 정리하는 과정에서 ssh -i ~/.ssh/id_rsa user@host  라는 명령어가 있었던 게 생각이 났고,
+
+비밀번호는 모르지만 저 private키를 이용하면 되지 않을까 싶었다.
+
+맨처음에 exit을 안한 bandit13서버 상태에서 했을 땐 당연히 안됐다
+
+그래서 key를 메모장에 복사해놓고 exit을 한 뒤 내 리눅스 홈 디렉토리에서
+
+nano ~/bandit14.key 리눅스 편집기로 새 파일을 만들고 아까 복사했던 key를 붙여넣은 뒤 저장했다
+
+그 다음 chmod 600 ~/bandit14.key 으로 권한을 수정해주고 (처음에 window에 저장하고 권한 수정 안했더니 안됐음..)
+
+ssh -i ~/bandit14.key bandit14@bandit.labs.overthewire.org -p 2220 을 통해 문제를 풀 수 있었다 어휴
 
 ```bash
 nano ~/bandit14.key          # 키 내용 붙여넣기
@@ -382,8 +452,10 @@ nc host 1234            # 클라이언트 모드
 nc -zv host 20-80       # 포트 스캔
 ```
 
+<img width="992" height="92" alt="스크린샷 2026-05-11 003141" src="https://github.com/user-attachments/assets/b97fdbb8-caa4-42dd-b28b-e660a1c9add9" />
+
 ```bash
-echo "현재비밀번호" | nc localhost 30000
+echo "현재레비밀번호" | nc localhost 30000
 ```
 
 ---
@@ -398,6 +470,15 @@ echo "현재비밀번호" | nc localhost 30000
 echo "현재비밀번호" | openssl s_client -connect localhost:30001 -quiet
 ```
 
+
+nc를 사용해 생(Plain) 데이터를 보냈다면, 이번에는 보안 연결(SSL/TLS)을 통해 비밀번호를 보내야 한다. 
+
+이번 레벨 비밀번호를 입력했더니 다음 레벨의 비밀번호를 수신받았다
+
+<img width="952" height="82" alt="스크린샷 2026-05-11 011038" src="https://github.com/user-attachments/assets/fd57a6b3-c5c9-4781-90a9-b8d5c97fa94c" />
+<img width="500" height="168" alt="스크린샷 2026-05-11 011030" src="https://github.com/user-attachments/assets/da8d694c-0438-4ad6-9aa0-758e2a0724c5" />
+
+
 ---
 
 ## Level 16 → 17
@@ -409,6 +490,8 @@ echo "현재비밀번호" | openssl s_client -connect localhost:30001 -quiet
 ```bash
 nmap -sV -p 31000-32000 localhost
 ```
+
+<img width="1138" height="368" alt="스크린샷 2026-05-11 020101" src="https://github.com/user-attachments/assets/b2ec7cf3-d117-4cd1-8e9a-6660b1ff47ce" />
 
 `-sV` 옵션으로 각 포트가 echo 서버인지 SSL 서버인지 파악한다. SSL이 적용된 포트 중 비밀번호를 입력했을 때 그대로 반환하지 않는 포트가 정답이다.
 
@@ -434,6 +517,8 @@ diff passwords.old passwords.new
 ---
 > 딸기      ← passwords.new 내용
 ```
+<img width="807" height="204" alt="스크린샷 2026-05-11 021438" src="https://github.com/user-attachments/assets/ac49fc0b-5212-4271-9581-23e02bd6d9a9" />
+
 
 ---
 
@@ -441,13 +526,17 @@ diff passwords.old passwords.new
 
 `.bashrc`가 수정되어 SSH 로그인 시 즉시 로그아웃된다.
 
+ssh의 역할이 뭐였는지 상기해보면 금방 풀 수 있을 것 같다
+
 SSH의 **원격 명령어 실행** 기능을 활용한다.
+
+<img width="1307" height="413" alt="스크린샷 2026-05-11 022408" src="https://github.com/user-attachments/assets/90d8f944-a874-4ed8-9c03-0b75826ac882" />
 
 ```bash
 ssh -p 2220 bandit18@bandit.labs.overthewire.org "cat readme"
 ```
 
-`.bashrc`가 실행되기 전에 명령어를 먼저 실행하여 결과를 얻을 수 있다.
+ssh는  특정 명령어만 실행하고 연결을 종료하는 기능도 제공한다. 이 경우 .bashrc가 실행되기 전에 명령어가 실행되거나, 실행되더라도 우리가 원하는 결과를 먼저 얻을 수 있다.
 
 ---
 
@@ -455,12 +544,18 @@ ssh -p 2220 bandit18@bandit.labs.overthewire.org "cat readme"
 
 홈 디렉토리의 **SetUID 바이너리**를 이용해야 한다.
 
+이번 문제에서는 setuid에 대한 개념이 필요하다
+
 > **SetUID:** 파일을 실행할 때 실행한 사람의 권한이 아니라 파일 소유자의 권한으로 실행되게 하는 특수 권한  
 > `rws r-x r-x` 형태로 표시됨
 
-```bash
-./bandit20-do cat /etc/bandit_pass/bandit20
-```
+<img width="958" height="259" alt="스크린샷 2026-05-11 023328" src="https://github.com/user-attachments/assets/9a8376c3-915a-4407-b8a0-ec9c9caea325" />
+
+위에 보이는 바와 같이 bandit20-do 파일은 SetUID설정이 되어있는 파일이고
+
+단순히 실행했을 때 ./bandit20-do whoami 와 같이 사용하라고 되어있다
+
+그래서 cat 해줬다
 
 ---
 
@@ -468,19 +563,40 @@ ssh -p 2220 bandit18@bandit.labs.overthewire.org "cat readme"
 
 setuid 바이너리가 지정한 포트의 localhost에 연결하여 bandit20 비밀번호를 확인하고, 맞으면 bandit21 비밀번호를 전송한다.
 
-**작업 제어(Job Control)** 를 활용해 터미널 하나로 클라이언트·서버 역할을 동시에 수행한다.
+이번 문제는 우리가 클라이언트와 서버 역할을 모두 수행해야한다. 
 
-| 명령어 | 설명 |
-|--------|------|
-| `명령어 &` | 백그라운드 실행 |
-| `Ctrl+Z` | 포그라운드 → 일시정지 |
-| `jobs` | 작업 목록 확인 |
-| `bg` | 백그라운드에서 재개 |
-| `fg` | 포그라운드로 전환 |
 
+바이너리가 포트의 localhos에 연결한 다음 텍스트 한 줄을 읽어온다고 하는 점에서 클라이언트라는  결론을 냈다.
+
+근데 지금 서버 역할을 하는 게 아무것도 없으므로 내가 서버를 열어야 하고, nc를 쓰면 될 것이다.
+
+
+서버 역할, 클라이언트 역할을 할 터미널을 각각 한 개씩 열어서 총 두개의 터미널을 사용하는 방법이 쉽긴 하지만, 문제의 필요한 명령어 부분에서 작업 제어에 대한 언급이 있으므로 이를 이용해보겠다.
+
+
+**작업 제어(Job Control)**
 ```bash
-echo "bandit20비밀번호" | nc -lp 1234 & sleep 2 && ./suconnect 1234
+포그라운드 (Foreground) = 터미널을 점유하며 실행
+백그라운드 (Background) = 터미널 뒤에서 조용히 실행
+
+& — 백그라운드 실행
+sleep 100 &             # 처음부터 백그라운드로 실행
+python server.py &      # 서버를 백그라운드에서 실행
+
+Ctrl+Z — 포그라운드 → 일시정지
+jobs — 작업 목록 확인
+bg — 백그라운드에서 재개 (Ctrl+Z로 멈춘 작업을 백그라운드에서 계속 실행)
+fg — 백그라운드 → 포그라운드
 ```
+<img width="1473" height="167" alt="스크린샷 2026-05-11 120349" src="https://github.com/user-attachments/assets/321ffa86-44eb-43ac-9555-46aed3fdd75b" />
+
+echo "bandit20 비밀번호" | nc -lp 1234 & sleep 2 && ./suconnect 1234
+
+(nc | echo 순서로 적으면 nc에서 입력 받은 데이터를 echo에게 전달하라는 의미가 되버림!)
+
+echo "bandit20 비밀번호" | nc -lp 1234 &  => 백그라운드에서 실행
+
+sleep 2 && ./suconnect 1234 => 2초 쉰 다음 바이너리 실행해서 방금 만든 서버로 접속
 
 ---
 
