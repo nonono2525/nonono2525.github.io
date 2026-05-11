@@ -1,3 +1,10 @@
+---
+layout: post-detail
+title: "리눅스 기반 시스템 탐색 및 데이터 분석"
+date: 2026-05-11
+category: "blog"
+---
+
 # OverTheWire Bandit 워게임 풀이 — WSL & Linux 기초 명령어
 
 ## 미션 목표
